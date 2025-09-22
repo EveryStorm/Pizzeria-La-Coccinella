@@ -18,7 +18,7 @@
 </div>
 
 <main id="menu">
-  <!-- Qui il JS genererà tutto il menù -->
+  <!-- Qui il JS genererà tutte le sezioni a discesa -->
 </main>
 
 <div class="footer">Coperto: €1 per persona</div>
@@ -27,18 +27,21 @@
 <script>
 const menuContainer = document.getElementById("menu");
 
-// Genera tutte le sezioni e i piatti
+// Genera sezioni e piatti
 menuData.forEach(section => {
   const sec = document.createElement("section");
   sec.classList.add("menu-section");
 
+  // Titolo sezione (cliccabile)
   const title = document.createElement("h2");
   title.classList.add("section-title");
   title.textContent = section.section;
   sec.appendChild(title);
 
+  // Contenuto della sezione (inizialmente nascosto)
   const content = document.createElement("div");
   content.classList.add("section-content");
+  content.style.display = "none"; // chiusa di default
 
   section.items.forEach(item => {
     const itemDiv = document.createElement("div");
@@ -51,6 +54,7 @@ menuData.forEach(section => {
 
     const details = document.createElement("div");
     details.classList.add("details");
+    details.style.display = "none"; // ingredienti nascosti
     details.textContent = item.details;
     itemDiv.appendChild(details);
 
@@ -61,30 +65,36 @@ menuData.forEach(section => {
   menuContainer.appendChild(sec);
 });
 
-// Collapsible per le sezioni
+// Collapsible sezioni
 document.querySelectorAll('.section-title').forEach(title => {
   title.addEventListener('click', () => {
     const content = title.nextElementSibling;
-    content.style.display = (content.style.display === 'block' || content.style.display === '') ? 'none' : 'block';
+    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
   });
 });
 
 // Ingredienti a comparsa cliccando sul piatto
-document.querySelectorAll('.item-header').forEach(header => {
-  header.addEventListener('click', () => {
-    const details = header.nextElementSibling;
-    details.style.display = (details.style.display === 'block' || details.style.display === '') ? 'none' : 'block';
-  });
+document.addEventListener('click', (e) => {
+  if(e.target.closest('.item-header')) {
+    const details = e.target.closest('.item-header').nextElementSibling;
+    details.style.display = (details.style.display === 'block') ? 'none' : 'block';
+  }
 });
 
 // Ricerca
 const searchInput = document.getElementById("search");
 searchInput.addEventListener('keyup', () => {
   const input = searchInput.value.toLowerCase();
-  document.querySelectorAll('.item').forEach(item => {
-    const name = item.querySelector('.item-name').innerText.toLowerCase();
-    const details = item.querySelector('.details').innerText.toLowerCase();
-    item.style.display = (name.includes(input) || details.includes(input)) ? 'flex' : 'none';
+  document.querySelectorAll('.menu-section').forEach(section => {
+    let sectionHasMatch = false;
+    section.querySelectorAll('.item').forEach(item => {
+      const name = item.querySelector('.item-name').innerText.toLowerCase();
+      const details = item.querySelector('.details').innerText.toLowerCase();
+      const match = name.includes(input) || details.includes(input);
+      item.style.display = match ? 'flex' : 'none';
+      if(match) sectionHasMatch = true;
+    });
+    section.querySelector('.section-content').style.display = sectionHasMatch ? 'block' : 'none';
   });
 });
 </script>
