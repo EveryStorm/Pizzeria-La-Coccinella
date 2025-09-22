@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menù Pizzeria La Coccinella</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menù Pizzeria La Coccinella</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo La Coccinella" class="logo">
-    <h1>Pizzeria La Coccinella</h1>
-  </header>
 
-  <div class="search-box">
-    <input type="text" id="search" placeholder="Cerca nel menù..." onkeyup="searchMenu()">
-  </div>
+<header>
+  <img src="logo.png" alt="Logo La Coccinella" class="logo">
+  <h1>Pizzeria La Coccinella</h1>
+</header>
 
-  <main id="menu"></main>
+<div class="search-box">
+  <input type="text" id="search" placeholder="Cerca pizza o ingrediente..." onkeyup="searchMenu()">
+</div>
 
-  <footer>
-    <p>Coperto: €1 a persona</p>
-  </footer>
+<main id="menu"></main>
 
-  <script src="menu.js"></script>
+<div class="footer">Coperto: €1 per persona</div>
+
+<script src="menu.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  generateMenu(); // genera il menù dinamicamente
+});
+
+function searchMenu() {
+  const input = document.getElementById("search").value.toLowerCase();
+  const items = document.querySelectorAll(".item");
+
+  items.forEach(item => {
+    const nome = item.querySelector(".item-name").innerText.toLowerCase();
+    const dettagli = item.querySelector(".details").innerText.toLowerCase();
+    item.style.display = (nome.includes(input) || dettagli.includes(input)) ? "flex" : "none";
+  });
+}
+
+function toggleDetails(elem) {
+  const details = elem.querySelector(".details");
+  if(details) {
+    details.style.display = details.style.display === "block" ? "none" : "block";
+  }
+}
+</script>
+
 </body>
 </html>
