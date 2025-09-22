@@ -3,74 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <title>Pizzeria La Coccinella</title>
-  <style>
-    body {
-      background-color: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      margin: 20px;
-    }
-
-    h1 {
-      color: red;
-      text-align: center;
-    }
-
-    h2 {
-      color: white;
-      border-bottom: 1px solid red;
-      padding-bottom: 5px;
-      margin-top: 20px;
-    }
-
-    #search {
-      display: block;
-      margin: 20px auto;
-      padding: 10px;
-      width: 80%;
-      font-size: 16px;
-      border: 2px solid red;
-      border-radius: 5px;
-    }
-
-    .item {
-      margin: 8px 0;
-      padding: 8px;
-      border-bottom: 1px solid #444;
-      cursor: pointer;
-    }
-
-    .item-header {
-      display: flex;
-      justify-content: space-between;
-      color: red;
-      font-weight: bold;
-    }
-
-    .price {
-      color: white;
-    }
-
-    .details {
-      display: none;
-      margin-top: 4px;
-      font-size: 0.9em;
-      color: #bbb;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Menù Pizzeria La Coccinella</h1>
+  <!-- Header con logo e titolo -->
+  <header>
+    <img src="logo.png" alt="Logo La Coccinella" class="logo" style="height: 80px; display:block; margin: 0 auto;">
+    <h1>Pizzeria La Coccinella</h1>
+  </header>
 
-  <!-- Campo ricerca -->
+  <!-- Campo di ricerca -->
   <input type="text" id="search" placeholder="Cerca una pizza o un piatto...">
 
   <!-- Contenitore menù -->
   <div id="menu"></div>
+
+  <!-- Footer con coperto -->
+  <footer>
+    Coperto €1 a persona
+  </footer>
 
   <!-- Carico i file JS -->
   <script src="menuData.js"></script>
