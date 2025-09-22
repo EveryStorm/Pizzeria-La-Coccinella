@@ -1,4 +1,5 @@
-const menuData = {
+function generateMenu() {
+  const menuData = {
   "Antipasti": [
     { nome: "Antipasto Casereccio", prezzo: 8, ingredienti: "Salumi, formaggi, sottaceti" },
     { nome: "Crudo e Mozzarella", prezzo: 10, ingredienti: "Prosciutto crudo, mozzarella fresca" },
@@ -172,3 +173,4 @@ function generateMenu() {
 
 // Genera subito il menù
 document.addEventListener('DOMContentLoaded', generateMenu);
+
