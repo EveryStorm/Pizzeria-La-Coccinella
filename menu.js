@@ -163,4 +163,12 @@ function generateMenu() {
         </div>
         <div class="details">${piatto.ingredienti || ""}</div>
       `;
-      section.append
+      section.appendChild(div);
+    });
+
+    main.appendChild(section);
+  }
+}
+
+// Genera subito il menù
+document.addEventListener('DOMContentLoaded', generateMenu);
