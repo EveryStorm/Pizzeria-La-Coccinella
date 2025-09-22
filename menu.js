@@ -1,4 +1,3 @@
-// Menù completo Pizzeria La Coccinella
 const menuData = {
   "Antipasti": [
     { nome: "Antipasto Casereccio", prezzo: 8, ingredienti: "Salumi, formaggi, sottaceti" },
@@ -83,9 +82,9 @@ const menuData = {
     { nome: "Calzone Pizza", prezzo: 8, ingredienti: "Mozzarella, prosciutto, funghi" },
     { nome: "Pizza alla Nutella", prezzo: 10, ingredienti: "Impasto pizza, Nutella" },
     { nome: "Margherita Integrale", prezzo: 7, ingredienti: "Impasto integrale, pomodoro, mozzarella" },
-    { nome: "Pizza Integrale Farcita", prezzo: 8, ingredienti: "Impasto integrale, mozzarella, salumi" },
-    { nome: "Pizza Integrale Farcita", prezzo: 9, ingredienti: "Impasto integrale, mozzarella, verdure" },
-    { nome: "Pizza Integrale Farcita", prezzo: 10, ingredienti: "Impasto integrale, mozzarella, specialità del giorno" }
+    { nome: "Pizza Integrale Farcita Salumi", prezzo: 8, ingredienti: "Impasto integrale, mozzarella, salumi" },
+    { nome: "Pizza Integrale Farcita Verdure", prezzo: 9, ingredienti: "Impasto integrale, mozzarella, verdure" },
+    { nome: "Pizza Integrale Farcita Specialità", prezzo: 10, ingredienti: "Impasto integrale, mozzarella, specialità del giorno" }
   ],
 
   "Pizze Speciali": [
@@ -145,29 +144,23 @@ const menuData = {
 };
 
 // Genera il menù dinamicamente
-const main = document.getElementById("menu");
+function generateMenu() {
+  const main = document.getElementById("menu");
 
-for (const categoria in menuData) {
-  const section = document.createElement("section");
-  section.className = "menu-section";
-  section.innerHTML = `<h2>${categoria}</h2>`;
+  for (const categoria in menuData) {
+    const section = document.createElement("section");
+    section.className = "menu-section";
+    section.innerHTML = `<h2>${categoria}</h2>`;
 
-  menuData[categoria].forEach(piatto => {
-    const div = document.createElement("div");
-    div.className = "item";
-    div.onclick = () => {
-      const details = div.querySelector(".details");
-      details.style.display = details.style.display === "block" ? "none" : "block";
-    };
-    div.innerHTML = `
-      <div class="item-header">
-        <span class="item-name">${piatto.nome}</span>
-        <span class="price">€${piatto.prezzo}</span>
-      </div>
-      <div class="details">${piatto.ingredienti || ""}</div>
-    `;
-    section.appendChild(div);
-  });
-
-  main.appendChild(section);
-}
+    menuData[categoria].forEach(piatto => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.onclick = () => toggleDetails(div);
+      div.innerHTML = `
+        <div class="item-header">
+          <span class="item-name">${piatto.nome}</span>
+          <span class="price">€${piatto.prezzo}</span>
+        </div>
+        <div class="details">${piatto.ingredienti || ""}</div>
+      `;
+      section.append

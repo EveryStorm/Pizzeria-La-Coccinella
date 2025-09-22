@@ -17,9 +17,7 @@
   <input type="text" id="search" placeholder="Cerca pizza o ingrediente..." onkeyup="searchMenu()">
 </div>
 
-<main id="menu">
-  <!-- Qui il menù verrà generato automaticamente -->
-</main>
+<main id="menu"></main>
 
 <div class="footer">Coperto: €1 per persona</div>
 
@@ -32,20 +30,18 @@ function searchMenu() {
   items.forEach(item => {
     const nome = item.querySelector(".item-name").innerText.toLowerCase();
     const dettagli = item.querySelector(".details").innerText.toLowerCase();
-    if (nome.includes(input) || dettagli.includes(input)) {
-      item.style.display = "flex";
-    } else {
-      item.style.display = "none";
-    }
+    item.style.display = (nome.includes(input) || dettagli.includes(input)) ? "flex" : "none";
   });
 }
 
 function toggleDetails(elem) {
   const details = elem.querySelector(".details");
-  if(details) {
-    details.style.display = details.style.display === "block" ? "none" : "block";
-  }
+  if(details) details.style.display = details.style.display === "block" ? "none" : "block";
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Il menu viene generato automaticamente da menu.js
+});
 </script>
 
 </body>
