@@ -14,89 +14,33 @@
 </header>
 
 <div class="search-box">
-  <input type="text" id="search" placeholder="Cerca nel menù...">
+  <input type="text" id="search" placeholder="Cerca pizza o ingrediente...">
 </div>
 
-<main id="menu">
-  <!-- Qui il JS genererà tutte le sezioni a discesa -->
-</main>
+<main id="menu"></main>
 
 <div class="footer">Coperto: €1 per persona</div>
 
+<!-- Prima carichiamo menu.js, poi inizializziamo -->
 <script src="menu.js"></script>
 <script>
-const menuContainer = document.getElementById("menu");
+  // Genera il menù solo quando la pagina è pronta
+  window.addEventListener('load', () => {
+    if (typeof generateMenu === "function") {
+      generateMenu();
 
-// Genera sezioni e piatti
-menuData.forEach(section => {
-  const sec = document.createElement("section");
-  sec.classList.add("menu-section");
-
-  // Titolo sezione (cliccabile)
-  const title = document.createElement("h2");
-  title.classList.add("section-title");
-  title.textContent = section.section;
-  sec.appendChild(title);
-
-  // Contenuto della sezione (inizialmente nascosto)
-  const content = document.createElement("div");
-  content.classList.add("section-content");
-  content.style.display = "none"; // chiusa di default
-
-  section.items.forEach(item => {
-    const itemDiv = document.createElement("div");
-    itemDiv.classList.add("item");
-
-    const header = document.createElement("div");
-    header.classList.add("item-header");
-    header.innerHTML = `<span class="item-name">${item.name}</span><span class="price">${item.price}</span>`;
-    itemDiv.appendChild(header);
-
-    const details = document.createElement("div");
-    details.classList.add("details");
-    details.style.display = "none"; // ingredienti nascosti
-    details.textContent = item.details;
-    itemDiv.appendChild(details);
-
-    content.appendChild(itemDiv);
+      // aggiungi ricerca
+      document.getElementById("search").addEventListener('keyup', () => {
+        const input = document.getElementById("search").value.toLowerCase();
+        const items = document.querySelectorAll(".item");
+        items.forEach(item => {
+          const nome = item.querySelector(".item-name").innerText.toLowerCase();
+          const dettagli = item.querySelector(".details").innerText.toLowerCase();
+          item.style.display = (nome.includes(input) || dettagli.includes(input)) ? "flex" : "none";
+        });
+      });
+    }
   });
-
-  sec.appendChild(content);
-  menuContainer.appendChild(sec);
-});
-
-// Collapsible sezioni
-document.querySelectorAll('.section-title').forEach(title => {
-  title.addEventListener('click', () => {
-    const content = title.nextElementSibling;
-    content.style.display = (content.style.display === 'block') ? 'none' : 'block';
-  });
-});
-
-// Ingredienti a comparsa cliccando sul piatto
-document.addEventListener('click', (e) => {
-  if(e.target.closest('.item-header')) {
-    const details = e.target.closest('.item-header').nextElementSibling;
-    details.style.display = (details.style.display === 'block') ? 'none' : 'block';
-  }
-});
-
-// Ricerca
-const searchInput = document.getElementById("search");
-searchInput.addEventListener('keyup', () => {
-  const input = searchInput.value.toLowerCase();
-  document.querySelectorAll('.menu-section').forEach(section => {
-    let sectionHasMatch = false;
-    section.querySelectorAll('.item').forEach(item => {
-      const name = item.querySelector('.item-name').innerText.toLowerCase();
-      const details = item.querySelector('.details').innerText.toLowerCase();
-      const match = name.includes(input) || details.includes(input);
-      item.style.display = match ? 'flex' : 'none';
-      if(match) sectionHasMatch = true;
-    });
-    section.querySelector('.section-content').style.display = sectionHasMatch ? 'block' : 'none';
-  });
-});
 </script>
 
 </body>
