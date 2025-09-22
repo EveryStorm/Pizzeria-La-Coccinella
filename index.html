@@ -23,10 +23,6 @@
 
 <script src="menu.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  generateMenu(); // genera il menù dinamicamente
-});
-
 function searchMenu() {
   const input = document.getElementById("search").value.toLowerCase();
   const items = document.querySelectorAll(".item");
@@ -40,10 +36,12 @@ function searchMenu() {
 
 function toggleDetails(elem) {
   const details = elem.querySelector(".details");
-  if(details) {
-    details.style.display = details.style.display === "block" ? "none" : "block";
-  }
+  if(details) details.style.display = details.style.display === "block" ? "none" : "block";
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Il menu viene generato automaticamente da menu.js
+});
 </script>
 
 </body>
