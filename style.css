@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #0d0d0d;
@@ -12,6 +14,7 @@ header {
   color: #f44336;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
 .logo { height: 70px; }
@@ -32,6 +35,12 @@ input[type=text] {
   box-shadow: 0 0 8px #f44336;
 }
 
+input[type=text]::placeholder {
+  color: #aaa;
+}
+
+main { padding: 0 10px 50px 10px; }
+
 .menu-section { margin-bottom: 30px; }
 
 .menu-section h2 {
@@ -44,16 +53,18 @@ input[type=text] {
 
 .item {
   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
-  align-items: center;
   padding: 15px 20px;
   margin-bottom: 10px;
   background-color: #1a1a1a;
   border-radius: 15px;
   cursor: pointer;
-  flex-direction: column;
-  align-items: flex-start;
+  transition: background 0.3s;
 }
+
+.item:hover { background-color: #2a2a2a; }
 
 .item-header {
   display: flex;
@@ -63,8 +74,7 @@ input[type=text] {
 
 .item-name { font-weight: 600; font-size: 1.1em; }
 .price { font-weight: 600; color: #ff6b6b; }
-.details { display: none; margin-top: 10px; color: #ccc; }
-.item:hover { background-color: #2a2a2a; }
+.details { display: none; margin-top: 10px; color: #ccc; line-height: 1.4; }
 
 .footer {
   text-align: center;
@@ -73,4 +83,5 @@ input[type=text] {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   color: #ff6b6b;
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.5);
 }
