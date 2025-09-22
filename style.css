@@ -1,73 +1,50 @@
-/* Impostazioni generali */
 body {
   background-color: #000;
   color: #fff;
-  font-family: 'Poppins', Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin: 20px;
 }
 
-/* Titolo principale */
 h1 {
   color: red;
   text-align: center;
-  font-size: 2.5em;
-  margin-bottom: 20px;
 }
 
-/* Titoli sezioni */
 h2 {
   color: red;
-  border-bottom: 2px solid red;
+  border-bottom: 1px solid red;
   padding-bottom: 5px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
-/* Campo ricerca */
 #search {
   display: block;
   margin: 20px auto;
-  padding: 12px 15px;
+  padding: 10px;
   width: 80%;
   max-width: 400px;
   font-size: 16px;
   border: 2px solid red;
-  border-radius: 12px;
-  outline: none;
+  border-radius: 5px;
   background-color: #111;
   color: #fff;
 }
 
-/* Contenitore delle sezioni menù */
 .menu-section {
-  background-color: #111;
-  margin: 20px auto;
   padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
-  max-width: 600px;
+  border-bottom: 1px solid #444;
+  margin-bottom: 10px;
 }
 
-/* Singolo piatto */
 .item {
-  padding: 10px;
-  margin: 5px 0;
-  border-radius: 10px;
-  transition: background 0.3s;
+  padding: 5px 0;
   cursor: pointer;
 }
 
-/* Effetto hover sul piatto */
-.item:hover {
-  background-color: #222;
-}
-
-/* Header del piatto: nome e prezzo */
 .item-header {
   display: flex;
   justify-content: space-between;
   font-weight: bold;
-  color: #fff;
 }
 
 .item-name {
@@ -78,37 +55,21 @@ h2 {
   color: white;
 }
 
-/* Ingredienti nascosti di default */
 .details {
   display: none;
-  margin-top: 5px;
+  margin-left: 15px;
   font-size: 0.9em;
   color: #ccc;
 }
 
-/* Nascondi elementi filtrati */
 .hidden {
   display: none !important;
 }
 
-/* Footer coperto */
 footer {
   text-align: center;
   margin-top: 40px;
-  padding: 15px;
-  border-top: 2px solid red;
-  font-size: 1.1em;
+  padding-top: 15px;
+  border-top: 1px solid red;
   color: #fff;
-}
-
-/* Responsività */
-@media (max-width: 700px) {
-  .menu-section {
-    margin: 15px;
-    padding: 15px;
-  }
-
-  #search {
-    width: 90%;
-  }
 }

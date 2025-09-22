@@ -1,10 +1,9 @@
 const main = document.getElementById("menu");
 const searchInput = document.getElementById("search");
 
-// Funzione che genera il menù
+// Genera il menù dinamicamente
 function generaMenu() {
-  main.innerHTML = ""; // pulisco prima
-
+  main.innerHTML = "";
   for (const categoria in menuData) {
     const section = document.createElement("section");
     section.className = "menu-section";
@@ -14,7 +13,6 @@ function generaMenu() {
       const div = document.createElement("div");
       div.className = "item";
 
-      // click per mostrare dettagli
       div.onclick = () => {
         const details = div.querySelector(".details");
         details.style.display = details.style.display === "block" ? "none" : "block";
@@ -27,6 +25,7 @@ function generaMenu() {
         </div>
         <div class="details">${piatto.ingredienti || ""}</div>
       `;
+
       section.appendChild(div);
     });
 
@@ -34,7 +33,7 @@ function generaMenu() {
   }
 }
 
-// Funzione di ricerca
+// Funzione ricerca
 function filtraMenu() {
   const query = searchInput.value.toLowerCase();
   const items = document.querySelectorAll(".item");
