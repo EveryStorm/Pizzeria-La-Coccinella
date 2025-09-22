@@ -3,29 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menù Pizzeria La Coccinella</title>
+  <title>Pizzeria La Coccinella</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
   <header>
-    <img src="logo.png" alt="Logo La Coccinella" class="logo">
-    <h1>Pizzeria La Coccinella</h1>
+    <h1>🍕 Pizzeria La Coccinella</h1>
+    <input type="text" id="searchBar" placeholder="Cerca un piatto o ingrediente...">
   </header>
 
-  <!-- Barra di ricerca -->
-  <div class="search-box">
-    <input type="text" id="search" placeholder="Cerca nel menù...">
-  </div>
+  <main id="menu"></main>
 
-  <!-- Contenuto del menù -->
-  <main id="menu">
-    <!-- Qui JS inserirà tutto il menù -->
-  </main>
-
-  <!-- Footer -->
-  <div class="footer">Coperto: €1 per persona</div>
+  <footer>
+    Coperto: €1 a persona
+  </footer>
 
   <script src="menu.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
