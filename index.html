@@ -37,13 +37,6 @@ function searchMenu() {
     item.style.display = (nome.includes(input) || dettagli.includes(input)) ? "flex" : "none";
   });
 }
-
-function toggleDetails(elem) {
-  const details = elem.querySelector(".details");
-  if(details) {
-    details.style.display = details.style.display === "block" ? "none" : "block";
-  }
-}
 </script>
 
 </body>
