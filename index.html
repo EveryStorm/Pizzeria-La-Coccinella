@@ -14,29 +14,33 @@
 </header>
 
 <div class="search-box">
-  <input type="text" id="search" placeholder="Cerca pizza o ingrediente..." onkeyup="searchMenu()">
+  <input type="text" id="search" placeholder="Cerca pizza o ingrediente...">
 </div>
 
 <main id="menu"></main>
 
 <div class="footer">Coperto: €1 per persona</div>
 
+<!-- Prima carichiamo menu.js, poi inizializziamo -->
 <script src="menu.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  generateMenu(); // genera il menù dinamicamente
-});
+  // Genera il menù solo quando la pagina è pronta
+  window.addEventListener('load', () => {
+    if (typeof generateMenu === "function") {
+      generateMenu();
 
-function searchMenu() {
-  const input = document.getElementById("search").value.toLowerCase();
-  const items = document.querySelectorAll(".item");
-
-  items.forEach(item => {
-    const nome = item.querySelector(".item-name").innerText.toLowerCase();
-    const dettagli = item.querySelector(".details").innerText.toLowerCase();
-    item.style.display = (nome.includes(input) || dettagli.includes(input)) ? "flex" : "none";
+      // aggiungi ricerca
+      document.getElementById("search").addEventListener('keyup', () => {
+        const input = document.getElementById("search").value.toLowerCase();
+        const items = document.querySelectorAll(".item");
+        items.forEach(item => {
+          const nome = item.querySelector(".item-name").innerText.toLowerCase();
+          const dettagli = item.querySelector(".details").innerText.toLowerCase();
+          item.style.display = (nome.includes(input) || dettagli.includes(input)) ? "flex" : "none";
+        });
+      });
+    }
   });
-}
 </script>
 
 </body>
